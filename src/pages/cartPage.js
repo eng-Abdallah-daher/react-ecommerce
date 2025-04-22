@@ -1,33 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../css/cart_Page.css'
-
-
-const getCookie = name => {
-    const cookieArr = document.cookie.split('; ');
-    for (let cookie of cookieArr) {
-        const [key, val] = cookie.split('=');
-        if (key === name) {
-            try {
-                return JSON.parse(val);
-            } catch (e) {
-                return [];
-            }
-        }
-    }
-    return [];
-};
-
-const setCookie = (name, value, days) => {
-    const jsonStr = JSON.stringify(value);
-    let expires = "";
-    if (days) {
-        const date = new Date();
-        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = `${name}=${jsonStr}${expires}; path=/`;
-};
-
+import {deleteItemFromCart} from './utils/Functions'
+import { setCookie, getCookie } from './utils/Functions';
 const CartPage = () => {
     const [cart, setCart] = useState([]);
 
@@ -36,13 +10,7 @@ const CartPage = () => {
         setCart(savedCart);
     }, []);
 
-    const deleteItem = (itemToDelete) => {
-        const updated = cart.filter(
-            item => !(item.name === itemToDelete.name && item.img === itemToDelete.img)
-        );
-        setCookie('cartItems', updated, 7);
-        setCart(updated);
-    };
+
 
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -63,7 +31,13 @@ const CartPage = () => {
                                 </div>
                             </div>
                             <button
-                                onClick={() => deleteItem(item)}
+                                onClick={
+                                    () => {
+                                        deleteItemFromCart(item);
+                                        setCart(cart.filter((_, i) => i !== index));
+                                        
+                                    }
+                                }
                                 aria-label="remove the item from the cart"
                             >
                                 X
@@ -78,8 +52,9 @@ const CartPage = () => {
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}><button className="checkout-btn" onClick={
                 () => {
-                    document.cookie = `cartItems=${JSON.stringify([])}; path=/; expires=${new Date(Date.now() + 7 * 86400000).toUTCString()}`;
-                    window.location.reload();
+                    setCookie('cartItems', [], 7);
+                    setCart([]);
+                    
                 }
             }>Checkout</button></div>
             <div style={{ display: 'flex', justifyContent: 'center' }}> <button

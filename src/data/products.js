@@ -1,7 +1,4 @@
-
-
-let cart = [];
- export var obj = {
+export var obj = {
     "results": [
         {
             "productID": "KL2432",

@@ -15,10 +15,12 @@
       position: absolute;
       background: white;
       border: 1px solid #ccc;
-      width: 400px;
+      width: 40%;
       max-height: 200px;
       overflow-y: auto;
       z-index: 10;
+      margin: 0 8%;
+      /* margin: 0 auto; */
   }
 
   .suggestion {
@@ -40,6 +42,7 @@
   }
 
   .logo {
+    width: 15%;
       font-size: 20px;
       font-weight: bold;
       margin-left: 100px;
@@ -150,6 +153,7 @@
   }
 
   .icons {
+    width: 20%;
       margin-right: 100px;
   }
 
@@ -450,33 +454,11 @@
 
       }
 
-      .search-bar {
-          flex: 1;
-          margin: 0 20px;
-          display: flex;
-          align-items: center;
-          background: white;
-          border-radius: 5px;
-          padding: 5px;
-          border: 2px solid #007bff;
-          transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      }
 
 
-      .search-bar input {
-          border: none;
-          outline: none;
-          flex: 1;
-          padding: 8px;
-          font-size: 14px;
-      }
+  
 
-      .navbar-top .search-bar i {
-          margin-right: 10px;
-          color: #555;
-          cursor: pointer;
-      }
-
+      
       .navbar-top .icons i {
           margin-left: 15px;
           cursor: pointer;
@@ -794,6 +776,7 @@
       .imageedit {
           width: 100%;
       }
+
   }
 
 
@@ -804,4 +787,41 @@
 
   .suggestion-container{
     top: 102px;
+  }
+
+
+  .search-bar {
+      flex: 1;
+    
+      display: flex;
+      align-items: center;
+      background: white;
+      border-radius: 5px;
+      padding: 5px;
+      border: 2px solid #007bff;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      width: 70%;
+      margin: 0 auto;
+  }
+  .search-bar-container{
+    width: 80%;
+  }
+  @media (max-width: 768px) {
+    #suggestion-container{
+        width: 94%;
+        margin: 0 auto;
+    }
+    .icons{
+        width: fit-content;
+    }
+    .logo{
+        width: 40%;
+    }
+        .search-bar {
+            width: 100%;
+            margin: 0;
+        }
+                .search-bar-container {
+                    width: 100%;
+                }
   }

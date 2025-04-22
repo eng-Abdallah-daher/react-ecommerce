@@ -1,38 +1,15 @@
 import React, { useState, useEffect } from 'react';
-
-
-function setCookie(name, value, days) {
- 
-  const stringValue = JSON.stringify(value);
-  let expires = '';
-  if (days) {
-    const date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = '; expires=' + date.toUTCString();
-  }
-  document.cookie = `${name}=${stringValue}${expires}; path=/`;
-}
-
-function getCookie(name) {
-  const cookies = document.cookie.split('; ');
-  for (let c of cookies) {
-    const [key, val] = c.split('=');
-    if (key === name) {
-      try {
-        return JSON.parse(val);
-      } catch {
-        return [];
-      }
-    }
-  }
-  return [];
-}
+import { setCookie, deleteItemFromCart } from './utils/Functions';
+import CartItem from './components/cartItem';
+import { cart, updateCart } from './utils/Functions'
 
 const Cart = () => {
-  const [cart, setCart] = useState([]);
+  
   const [showCart, setShowCart] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [itemToRemove, setItemToRemove] = useState(null);
+  
+
 
   useEffect(() => {
     if (showCart) {
@@ -45,25 +22,11 @@ const Cart = () => {
     };
   }, [showCart]);
 
-  useEffect(() => {
-    const storedCart = getCookie('cartItems');
-    setCart(storedCart);
-  }, []);
 
 
 
 
 
-  const deleteItemFromCart = (itemToRemove) => {
-    const currentCart = getCookie('cartItems');
-
-    const updatedCart = currentCart.filter(item =>
-      !(item.name === itemToRemove.name && item.img === itemToRemove.img)
-    );
-
-    setCookie('cartItems', updatedCart, 7);
-    window.location.reload();
-  };
 
   const openConfirmDialog = index => {
     setItemToRemove(index);
@@ -103,18 +66,7 @@ const Cart = () => {
         <div className="cart-items-wrapper">
           {cart.length > 0 ? (
             cart.map((item, index) => (
-              <div key={index} className="cart-item">
-                <div style={{ height: '90px' }}>
-                  <img src={item.img} alt={item.name} tabIndex="0" />
-                </div>
-                <div style={{ flex: 7 }}>
-                  <strong tabIndex="0">{item.name}</strong><br />
-                  <span tabIndex="0">Swatch: {item.swatch}</span><br />
-                  <span tabIndex="0">Quantity: {item.quantity}</span><br />
-                  <span tabIndex="0">Total: {item.price * item.quantity}$</span>
-                </div>
-                <button onClick={() => openConfirmDialog(item)} aria-label={`remove ${item.name} ${item.swatch} from the cart`}>X</button>
-              </div>
+              <CartItem key={index} index={index} item={item} openConfirmDialog={openConfirmDialog} />
             ))
           ) : (
             <p>No items in cart</p>
@@ -130,8 +82,9 @@ const Cart = () => {
           <button
             className="checkout-btn"
             onClick={() => {
-              document.cookie = `cartItems=${JSON.stringify([])}; path=/; expires=${new Date(Date.now() + 7 * 86400000).toUTCString()}`;
-              window.location.reload(); 
+              setCookie('cartItems', [], 7);
+setShowCart(false);
+              updateCart([]);
             }}
           >
             Checkout

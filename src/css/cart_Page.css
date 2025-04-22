@@ -6,7 +6,7 @@
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     padding: 10px;
     margin-right: auto;
     margin-left: auto;
@@ -28,7 +28,7 @@ h2 span {
 }
 
 .cart-items-wrapper {
-    max-height: 300px;
+    max-height: 330px;
     overflow-y: auto;
     padding-bottom: 15px;
     margin-bottom: 15px;
