@@ -23,6 +23,7 @@ export function getWishlistItems() {
 }
 
 export const addToWishlist = (index) => {
+
     try {
         const wishlist = getWishlist();
         if (!wishlist.includes(index)) {
