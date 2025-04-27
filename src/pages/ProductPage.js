@@ -5,8 +5,7 @@ import Navbar from './components/Navbar';
 import '../css/products_Page.css';
 import '../css/cart.css';
 import { addNewItem } from './utils/Functions';
-
-
+import HeartButton from './components/HeartButton';
 export default function ProductPage() {
 
     const { id: routeId } = useParams();
@@ -233,7 +232,7 @@ export default function ProductPage() {
 
                             </div>
 
-                            <div className="add-to-list" title="ADD TO LIST" tabIndex="0">♥ ADD TO LIST</div>
+                            <div className="add-to-list" title="ADD TO LIST" tabIndex="0"><HeartButton productIndex={index}/> ADD TO LIST</div>
 
                             <div className="details">
                                 {[

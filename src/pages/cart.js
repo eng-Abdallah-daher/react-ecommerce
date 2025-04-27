@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { setCookie, deleteItemFromCart } from './utils/Functions';
 import CartItem from './components/cartItem';
 import { cart, updateCart } from './utils/Functions'
+import ConfirmDialog from './components/ConfirmDialog';
 
 const Cart = () => {
   
@@ -95,20 +96,8 @@ setShowCart(false);
         <button className="checkout-btn" onClick={() => setShowCart(false)}>Close</button>
         </div> </div>
 
-      <div
-        className="confirm-dialog"
-        style={{ display: showConfirm ? 'block' : 'none' }}
-      >
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <div id="remove" tabIndex="0">Remove Item?</div>
-          <div id="x" tabIndex="0" aria-label="Close the dialog" onClick={() => setShowConfirm(false)}>X</div>
-        </div>
-        <p>Are you sure you want to remove the following product from the cart?</p>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <button className="no" onClick={() => setShowConfirm(false)}>Cancel</button>
-          <button className="yes" onClick={confirmRemove} id="yes">Yes</button>
-        </div>
-      </div>
+      <ConfirmDialog show={showConfirm} onCancel={() => setShowConfirm(false)} onConfirm={confirmRemove} message={`Are you sure you want to remove the following product from the cart?`} title={'Remove Item?'}/>
+
 
       <i
         id="cart-icon"

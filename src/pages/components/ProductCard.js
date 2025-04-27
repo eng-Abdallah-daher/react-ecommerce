@@ -1,15 +1,12 @@
 import React, {  } from 'react';
 import { Link } from 'react-router-dom';
-export default function ProductCard({ idx, product, setSelected, setSwatchSel, imgSrc, sel }) {
-
- 
-    return (
+import Heart from './HeartButton'
+export default function ProductCard({ idx, product, setSwatchSel, imgSrc, sel}) {
+  return (
         <div
             key={idx}
             className="product-card"
-            tabIndex="0"
-            onClick={() => setSelected(idx)}
-            onKeyDown={e => e.key === 'Enter' && setSelected(idx)}
+            tabIndex="0"      
         >
             <div className="product-info">
                 <div
@@ -43,6 +40,7 @@ export default function ProductCard({ idx, product, setSelected, setSwatchSel, i
                 <p className="quickshop" tabIndex="0">
                     Quick shop
                 </p>
+                <Heart productIndex={idx} />
                 <Link
                     to={`/products?id=${idx}`}
                     className="forhref"
@@ -57,6 +55,7 @@ export default function ProductCard({ idx, product, setSelected, setSwatchSel, i
                 <p className="product-price" tabIndex="0">
                     {product.productName} {sel + 1} selected
                 </p>
+
                 {product.swatches && (
                     <div className="swatches">
                         {product.swatches.slice(0, 3).map((swatch, j) => (

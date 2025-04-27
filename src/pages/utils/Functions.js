@@ -1,4 +1,5 @@
 
+
 export const getCookie = (name) => {
     const cookies = document.cookie.split('; ');
     for (let c of cookies) {
@@ -38,6 +39,7 @@ export function debounce(fn, delay) {
 
 
 export var cart = getCookie('cartItems');
+
 export function updateCart(newCart) {
     cart = newCart;
     setCookie('cartItems', cart, 7);

@@ -3,6 +3,7 @@ import Cart from '../cart';
 import NavbarLinks from './NavbarLinks';
 import mobileMenuItems from './MobileContent';
 import SearchBar from './SearchBar';
+import Wishlist from './Wishlist'
 export default function Navbar({ chooseSuggest }) {
    
    
@@ -25,7 +26,8 @@ export default function Navbar({ chooseSuggest }) {
                     <SearchBar chooseSuggest={chooseSuggest}/>
 
                 <div className="icons">
-                    <i tabIndex="0">❤️</i>
+                   
+                        <Wishlist />
                     <Cart  />
                     <i tabIndex="0">👤</i>
                 </div>
@@ -38,7 +40,16 @@ export default function Navbar({ chooseSuggest }) {
                 <div className='navbar-top'>
                     <div className="logo" tabIndex="0">MY SHOP</div>
                     <div className="icons">
-                        <i tabIndex="0">❤️</i>
+                        <i tabIndex="0"
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    window.location.href = '/wishlist'
+                                }
+                            }}
+                            onClick={() => {
+                                window.location.href = '/wishlist'
+                            }}>❤️
+                            </i>
                         <i tabIndex="0"
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter') {

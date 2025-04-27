@@ -1,7 +1,7 @@
 import React, { useState,  useRef } from 'react';
 import { obj } from '../../data/products';
 import { debounce } from '../utils/Functions';
-import { a } from 'framer-motion/client';
+
 export default function SearchBar({chooseSuggest }) {
     const [suggest, setSuggest] = useState([]);
  const [selected, setSelected] = useState(null);
