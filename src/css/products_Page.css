@@ -158,7 +158,7 @@
   }
 
   .icons i {
-      margin-left: 15px;
+
       cursor: pointer;
   }
 
@@ -460,7 +460,7 @@
 
       
       .navbar-top .icons i {
-          margin-left: 15px;
+          margin-left: 0;
           cursor: pointer;
           font-size: 20px;
       }

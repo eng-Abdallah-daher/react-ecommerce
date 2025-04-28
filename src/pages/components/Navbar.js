@@ -4,6 +4,7 @@ import NavbarLinks from './NavbarLinks';
 import mobileMenuItems from './MobileContent';
 import SearchBar from './SearchBar';
 import Wishlist from './Wishlist'
+import User from '../components/UserGreeting'
 export default function Navbar({ chooseSuggest }) {
    
    
@@ -25,11 +26,11 @@ export default function Navbar({ chooseSuggest }) {
 
                     <SearchBar chooseSuggest={chooseSuggest}/>
 
-                <div className="icons">
+                <div className="icons" style={{width:"30%"}}>
                    
                         <Wishlist />
                     <Cart  />
-                    <i tabIndex="0">👤</i>
+                    <User />
                 </div>
             </div>
 
@@ -39,7 +40,7 @@ export default function Navbar({ chooseSuggest }) {
             <div className="navbar-top-small-screen navbar-top">
                 <div className='navbar-top'>
                     <div className="logo" tabIndex="0">MY SHOP</div>
-                    <div className="icons">
+                    <div className="icons" style={{ width: "60%" }}>
                         <i tabIndex="0"
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter') {
@@ -59,7 +60,7 @@ export default function Navbar({ chooseSuggest }) {
                             onClick={() => {
                                 window.location.href = '/cart'
                             }}>🛒</i>
-                        <i tabIndex="0">👤</i>
+                        <User />
                     </div>
                     <div
                         className="menu-icon"

@@ -124,7 +124,7 @@ export const Wishlist = () => {
                 title="wishlist"
                 onMouseEnter={() => setShowWishlist(true)}
                 tabIndex="0"
-                style={{ cursor: 'pointer', marginLeft: '10px' }}
+                style={{ cursor: 'pointer', marginLeft: '0' }}
                 onKeyDown={(event) => {
                     if (event.key === 'Enter') {
                         setShowWishlist(prev => !prev);
