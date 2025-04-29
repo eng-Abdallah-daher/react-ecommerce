@@ -9,7 +9,7 @@ import Navbar from './components/Navbar';
 import FiltersSidebar from './components/FiltersSidebar';
 const HomePage = () => {
     const [filtered, setFiltered] = useState([]);
-    
+    const [selected, setSelected] = useState(null);
     const [showSuggest, setShowSuggest] = useState(false);
     const [swatchSel, setSwatchSel] = useState({});
 
@@ -20,7 +20,7 @@ const HomePage = () => {
     }, []);
 
     const chooseSuggest = idx => {
- 
+        setSelected(idx);
         setShowSuggest(false);
     };
     return (
@@ -38,16 +38,20 @@ const HomePage = () => {
                     </div>
                     <h2 className="products-title" tabIndex="0">Products</h2>
                     <div className="products" id="products-container">
-                        {( filtered
+                        {(selected !== null
+                            ? [obj.results[selected]]
+                            : filtered
                         ).map(product => {
-                            const idx =  product.originalIndex;
+                            const idx = selected !== null
+                                ? selected
+                                : product.originalIndex;
                             const sel = swatchSel[idx] || 0;
                             const imgSrc = product.swatches
                                 ? product.swatches[sel].img.src
                                 : product.productImg;
 
                             return (
-                                <ProductCard idx={product.index} product={product}  setSwatchSel={setSwatchSel} imgSrc={imgSrc} sel={sel} />
+                              <ProductCard idx={idx} product={product} setSelected={setSelected} setSwatchSel={setSwatchSel} imgSrc={imgSrc} sel={sel} />
                             );
                         })}
                     </div>

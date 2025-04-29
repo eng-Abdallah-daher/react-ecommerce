@@ -440,3 +440,19 @@ margin: 10px;
 .products-title{
     width: 30%;
 }
+.UserGreeting {
+    cursor: pointer;
+     display: inline;
+      margin: 0 3px;
+background: white;
+ color:#002233;
+ border-radius: 5px;
+ font-size: 14px;
+  padding:3px 2px;
+   
+                   
+}
+.UserGreeting:hover{
+    background: #002233;
+    color: white;
+}

@@ -1,7 +1,6 @@
-import { useState } from "react";
+
 import { users } from "../../data/users";
-import ConfirmDialog from "../components/ConfirmDialog";
-import { getCookie, setCookie } from "./Functions";
+import {  setCookie } from "./Functions";
 
 export async function hashPassword(password) {
     const encoder = new TextEncoder();
@@ -26,8 +25,10 @@ export async function authenticate (email, password) {
 }
 export function logout(){
                 setCookie('userName', [], 7);
+                setCookie('userimage', [], 7);
+                setCookie('address', [], 7);
                 setCookie('email', [], 7);
                 setCookie('cartItems', [], 7);
                 setCookie('wishlistItems', [], 7);
-    window.location.reload();
+    window.location.href = `/`;
 }

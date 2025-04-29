@@ -3,6 +3,7 @@ import '../css/cart_Page.css';
 import { obj } from '../data/products';
 import { getWishlist, removeFromWishlist, clearWishlist } from './utils/WishlistFunctions';
 import ConfirmDialog from './components/ConfirmDialog';
+import CartPageItem from './components/cartPageItem';
 
 const WishlistPage = () => {
     const [wishlist, setWishlist] = useState([]);
@@ -46,25 +47,14 @@ const WishlistPage = () => {
                     <div style={{ textAlign: 'center', padding: '20px' }}>Your wishlist is empty.</div>
                 ) : (
                     wishlist.map((item, index) => (
-                        <div className="cart-item" key={index}>
-                            <div className="m">
-                                <div style={{ display: 'flex' }}>
-                                    <img src={item.productImg} alt={`${item.productName}`} tabIndex="0" />
-                                    <div className="data">
-                                        <div tabIndex="0">{item.productName}</div>
-                                        <div tabIndex="0">{item.productcolor}</div>
-                                        <div tabIndex="0">{item.productPriceFormatted}</div>
-                                    </div>
-                                </div>
-                                <button
-                                    onClick={() => openConfirmDialog(item)}
-                                    aria-label="remove the item from wishlist"
-                                >
-                                    X
-                                </button>
-                            </div>
-                        </div>
-                    ))
+
+                        <CartPageItem
+                            key={index}
+                            item={item}
+                            openConfirmDialog={openConfirmDialog}
+                        />
+                    )
+                )
                 )}
             </div>
 

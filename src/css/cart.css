@@ -183,3 +183,9 @@
 }
 
 
+@media screen and (max-width: 512px) {
+ .confirm-dialog{
+    width: 70%;
+ }
+    
+}

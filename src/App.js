@@ -5,6 +5,7 @@ import CartPage from './pages/cartPage';
 import GoodsPage from './pages/goodsPage';
 import WishlistPage from './pages/WishlistPage';
 import Login from './pages/loginPage'
+import Account from './pages/AccountPage'
 function App() {
   return (
     <Router>
@@ -15,6 +16,7 @@ function App() {
         <Route path="/goods" element={<GoodsPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/account" element={<Account />} />
 
       </Routes>
     </Router>

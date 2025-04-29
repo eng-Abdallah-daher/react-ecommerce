@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { getCookie } from "../utils/Functions";
-import ConfirmDialog from "./ConfirmDialog";
-import { logout } from "../utils/loginFunctions";
+
 
 function UserGreeting() {
-    const [showConfirm, setShowConfirm] = useState(false);
+ 
     const userName = getCookie('userName');
     console.log(userName);
 
@@ -22,19 +20,13 @@ function UserGreeting() {
                 </i>
             ) : (
                 <>
-                    <p
-                        style={{ display: 'inline', margin: '0 3px' ,cursor:'pointer'}}
-                        onClick={() => setShowConfirm(true)}
-                    >
+<button onClick={() => window.open("/account?data=profileinfo", "_self")}
+                      
+                    className="UserGreeting"
+    >
                         Hi, {userName}
-                    </p>
-                    <ConfirmDialog
-                        message="Do you want to log out?"
-                        onConfirm={logout}
-                        title="Log out"
-                        onCancel={() => setShowConfirm(false)}
-                        show={showConfirm}
-                    />
+                    </button>
+               
                 </>
             )}
         </>

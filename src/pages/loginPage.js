@@ -12,11 +12,13 @@ const Login = () => {
         e.preventDefault();
         const result = await authenticate(email, password);
         if (result.success) {
-            const { name, email, cartitems, wishlist } = result.user;
+            const { name, email, cartitems, wishlist, userimage, address } = result.user;
             setCookie('userName', name, 7);
             setCookie('email', email, 7);
             setCookie('cartItems', cartitems, 7);
+            setCookie('userimage', userimage, 7);
             setCookie('wishlistItems', wishlist, 7);
+            setCookie('address', address, 7);
             window.open('/', '_self');
         } else {
             alert('Wrong email or password.');
